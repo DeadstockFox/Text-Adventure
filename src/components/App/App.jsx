@@ -13,9 +13,8 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from '../AboutPage/AboutPage';
+import CreditsPage from '../CreditsPage/Credits';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -34,44 +33,29 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
         <Switch>
           {/* Visiting localhost:5173 will redirect to localhost:5173/home */}
           <Redirect exact from="/" to="/home" />
 
-          {/* Visiting localhost:5173/about will show the about page. */}
           <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
-          >
-            <AboutPage />
+            //Shows Credits Page - accessible from Game Start screen
+            exact path="/credits"  >
+            <CreditsPage />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:5173/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:5173/user */}
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
-          >
-            <UserPage />
-          </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
+          <ProtectedRoute exact path="/user" >
+            {/*logged in shows UserPage else shows LoginPage*/}
+
+          <UserPage />
           </ProtectedRoute>
 
           <Route
-            exact
-            path="/login"
-          >
+            exact path="/login">
             {user.id ?
               // If the user is already logged in, 
               // redirect to the /user page
@@ -83,9 +67,7 @@ function App() {
           </Route>
 
           <Route
-            exact
-            path="/registration"
-          >
+            exact path="/registration" >
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
@@ -97,9 +79,7 @@ function App() {
           </Route>
 
           <Route
-            exact
-            path="/home"
-          >
+            exact path="/home" >
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
@@ -114,6 +94,7 @@ function App() {
           <Route>
             <h1>404</h1>
           </Route>
+
         </Switch>
         <Footer />
       </div>

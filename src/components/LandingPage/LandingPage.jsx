@@ -13,6 +13,17 @@ function LandingPage() {
     history.push('/login');
   };
 
+  //THIS WILL BECOME THE GAME TITLE PAGE
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="container">
       <h2>{heading}</h2>

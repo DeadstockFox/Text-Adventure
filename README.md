@@ -129,5 +129,11 @@ Tasks
 [x] install necessary dependencies
 [x] Change db name in vsCode & create database in Postico
 [x] Open code in local host to see if it runs
+[?] Delete uncessary files (without affecting site @.@)
+[?] Create "Credits Page" template
+[] Change "Landing Page" to "Game Start" page
+[] Create "Adventure" Page and have it redirect on login (protected?)
 []
 []
+
+x = Completed, ? = Partially Completed
