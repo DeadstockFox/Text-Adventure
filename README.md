@@ -122,3 +122,12 @@ This code is also heavily commented. We recommend reading through the comments, 
 ## Update Documentation
 
 Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2.
+
+
+Tasks
+[x] Get lay of the land with current code
+[x] install necessary dependencies
+[x] Change db name in vsCode & create database in Postico
+[x] Open code in local host to see if it runs
+[]
+[]
