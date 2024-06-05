@@ -8,14 +8,13 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+import Adventure from '../Adventure/Adventure';
 import CreditsPage from '../CreditsPage/Credits';
-import UserPage from '../UserPage/UserPage';
-import LandingPage from '../LandingPage/LandingPage';
+import GameTitle from '../GameTitle/GameTitle';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
@@ -48,10 +47,10 @@ function App() {
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:5173/user */}
 
-          <ProtectedRoute exact path="/user" >
+          <ProtectedRoute exact path="/adventure" >
             {/*logged in shows UserPage else shows LoginPage*/}
 
-          <UserPage />
+          <Adventure />
           </ProtectedRoute>
 
           <Route
@@ -59,7 +58,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/adventure" />
               :
               // Otherwise, show the login page
               <LoginPage />
@@ -71,7 +70,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/adventure" />
               :
               // Otherwise, show the registration page
               <RegisterPage />
@@ -83,10 +82,10 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/adventure" />
               :
-              // Otherwise, show the Landing page
-              <LandingPage />
+              // Otherwise, show the Title Page
+              <GameTitle />
             }
           </Route>
 

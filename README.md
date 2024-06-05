@@ -132,6 +132,7 @@ Tasks
 [?] Delete uncessary files (without affecting site @.@)
 [?] Create "Credits Page" template
 [] Change "Landing Page" to "Game Start" page
+[] Have "New Game" and "Load Game" redirect to register and login respectively.
 [] Create "Adventure" Page and have it redirect on login (protected?)
 []
 []
