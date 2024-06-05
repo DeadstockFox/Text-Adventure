@@ -1,5 +1,6 @@
-import './LandingPage.css';
+
 import { useHistory } from 'react-router-dom';
+import TitleStyle from './TitleStyle';
 
 
 
@@ -17,16 +18,9 @@ function GameTitle() {
 
  
   return (
-      <>
-      Landing 
-      <br />
-      
-
-
-      <button onClick={() => onNewGame()}>New Game</button>
-      <br />
-      <button onClick={() => onLoadGame()}>Load Game</button>
-      </>
+      <div style={{display: "flex", minHeight: "calc(100vh - 37px)"}}>
+      <TitleStyle onNewGame={onNewGame} onLoadGame={onLoadGame}/>
+      </div>
        
   );
 }

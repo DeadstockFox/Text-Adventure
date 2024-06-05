@@ -131,10 +131,12 @@ Tasks
 [x] Open code in local host to see if it runs
 [?] Delete uncessary files (without affecting site @.@)
 [?] Create "Credits Page" template
-[] Change "Landing Page" to "Game Start" page
-[] Have "New Game" and "Load Game" redirect to register and login respectively.
-[] Create "Adventure" Page and have it redirect on login (protected?)
-[]
-[]
+[x] Change "Landing Page" to "Game Start" page
+[x] Have "New Game" and "Load Game" redirect to register and login respectively.
+[x] Create "Adventure" Page and have it redirect on login (protected?)
+[] Install mui for styling home page & credits page
+[] Layoute template for Adventure Page
+[] Create database relations for prompts & images
+[] Connect prompts to user table (create saved state for returning to game)
 
 x = Completed, ? = Partially Completed

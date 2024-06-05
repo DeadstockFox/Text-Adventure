@@ -18,7 +18,7 @@ import GameTitle from '../GameTitle/GameTitle';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
-import './App.css';
+import './App2.css';
 
 function App() {
   const dispatch = useDispatch();
