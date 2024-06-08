@@ -58,9 +58,6 @@ const Adventure = () => {
                 </div>
             })}   
         <input style={{width: "700px"}}></input>
-        <button onClick={() => dispatch({ type: 'LOGOUT' })} >Logout</button>
-
-
 
         </Box>
         </>

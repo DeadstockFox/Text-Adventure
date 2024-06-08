@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import './Footer.css';
 
 // This is one of our simplest components
@@ -7,7 +8,11 @@ import './Footer.css';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  return <footer >&copy; Michael Kenyon</footer>;
+  const dispatch = useDispatch();
+
+  return <footer> &copy; Michael Kenyon
+    <button onClick={() => dispatch({ type: 'LOGOUT' })} >Logout</button>
+  </footer>
 }
 
 export default Footer;
