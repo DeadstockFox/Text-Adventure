@@ -19,9 +19,9 @@ export default function TitleStyle({onNewGame, onLoadGame}) {
       <Stack spacing={10} alignItems="center">
       <p style={{fontSize: "50px"}}>Game Title</p>
 
-      <button justifyContent={"center"} onClick={() => onNewGame()}>New Game</button>
+      <button style={{ justifyContent:"center"}} onClick={() => onNewGame()}>New Game</button>
       
-      <button justifyContent={"center"} onClick={() => onLoadGame()}>Load Game</button>
+      <button style={{ justifyContent:"center"}} onClick={() => onLoadGame()}>Load Game</button>
 
       </Stack>
       </Box>

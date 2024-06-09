@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import Box from '@mui/material/Box';
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 import './Adventure.css';
 
@@ -13,20 +13,27 @@ const Adventure = () => {
     const dispatch = useDispatch();
     const [promptRequest, setPromptRequest] = useState(1);
     const [promptReturn, setPromptReturn] = useState([]);
+    const [inputRequest, setInputRequest] = useState("");
     
+    const promptDetails = useSelector(store => store.prompts);
 
     const testGet = () => {
-        axios.get(`/api/temp/${promptRequest}`).then((r) => {
-            console.log(r.data);
-            setPromptReturn(r.data);
-        }).catch((e) => {
-            console.log('Error in client-side GET request,', e);
-        })
+        dispatch({type: 'FETCH_PROMPT', payload: promptRequest})
+        console.log(promptRequest);
     };
 
     useEffect(() => {
-        testGet();
+        dispatch({type: 'FETCH_PROMPT', payload: promptRequest});
     }, [])
+
+    const submitChoice = () => {
+        if (inputRequest === promptReturn[0].option_a) {setPromptRequest(promptReturn[0].option_a_dest)}
+        else {alert('incorrect choice')};
+        dispatch({type: 'FETCH_PROMPT', payload: promptRequest});
+        console.log(promptRequest);
+        
+
+    }
 
 
     return (
@@ -39,25 +46,29 @@ const Adventure = () => {
         m={0}
         sx={{ border: '5px solid black' }}
       >
-
+        {/*map function for the image data*/}
         {
-            promptReturn.map((p) => {
+            promptDetails.map((p) => {
             return <div style={{backgroundColor: "darkblue", height: "calc(100vh - 370px"}}>
                 <img src={p.image_path} />
                 </div>
             })}
 
+        {/*map function for the description and choices data*/}
         {
-            promptReturn.map((prompt) => {
+            promptDetails.map((prompt) => {
                 return <div style={{backgroundColor: "grey", height: "calc(100vh - 460px)"}} key={prompt.id}>
                     <p style={{marginTop: "0px"}}>{prompt.description}</p>
-                    <p>{prompt.option_a}</p>
+
+                    <p>{prompt.option_a} </p>
                     <p>{prompt.option_b}</p>
                     <p>{prompt.option_c}</p>
                     <p>{prompt.option_d}</p>
                 </div>
             })}   
-        <input style={{width: "700px"}}></input>
+
+        <input onChange={(e) => setInputRequest(e.target.value)}style={{width: "700px"}}></input>
+        <button onClick={() => submitChoice()}> Submit</button>
 
         </Box>
         </>
