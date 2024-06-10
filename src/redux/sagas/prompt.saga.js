@@ -19,15 +19,3 @@ function* promptSaga() {
 
 export default promptSaga;
 
-/*
-function* specificMovieDetail(action) {
-    try {
-      const detailGet = yield axios.get(`/api/movies/details/${action.payload}`); //requesting specific movie id with payload
-      console.log(detailGet.data)
-      yield put({type: 'SET_DETAILS', payload: detailGet.data}) // sending to reducer
-
-    } catch (e) {
-      console.log('specificMovieDetail error', e);
-    }
-}
-*/

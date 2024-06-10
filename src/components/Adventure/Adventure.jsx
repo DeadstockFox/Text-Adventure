@@ -11,30 +11,50 @@ import './Adventure.css';
 const Adventure = () => {
 
     const dispatch = useDispatch();
-    const [promptRequest, setPromptRequest] = useState(1);
-    const [promptReturn, setPromptReturn] = useState([]);
     const [inputRequest, setInputRequest] = useState("");
     
-    const promptDetails = useSelector(store => store.prompts);
-
+    let promptDetails = useSelector(store => store.prompts);
+/*
     const testGet = () => {
         dispatch({type: 'FETCH_PROMPT', payload: promptRequest})
         console.log(promptRequest);
     };
-
+*/
     useEffect(() => {
-        dispatch({type: 'FETCH_PROMPT', payload: promptRequest});
+        dispatch({type: 'FETCH_PROMPT', payload: 1 });
     }, [])
-
+/*
     const submitChoice = () => {
-        if (inputRequest === promptReturn[0].option_a) {setPromptRequest(promptReturn[0].option_a_dest)}
+        console.log(inputRequest);
+        if (inputRequest === promptDetails[0].option_a) {
+            
+            setPromptRequest(promptDetails[0].option_a_dest);
+            dispatch({type: 'FETCH_PROMPT', payload: promptRequest});
+        }
         else {alert('incorrect choice')};
-        dispatch({type: 'FETCH_PROMPT', payload: promptRequest});
         console.log(promptRequest);
-        
-
     }
+    */
 
+    const submitChoice = async () => {
+        const pd = promptDetails[0];
+
+        let promptRequestA = await (inputRequest === promptDetails[0].option_a ? true : false );
+        let promptRequestB = await (inputRequest === promptDetails[0].option_b ? true : false );
+        let promptRequestC = await (inputRequest === promptDetails[0].option_c ? true : false );
+        let promptRequestD = await (inputRequest === promptDetails[0].option_d ? true : false );
+
+        //console.log(myPromise);
+            if (promptRequestA == true) {
+                dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_a_dest});
+            } else if (promptRequestB == true) {
+                dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_b_dest});
+            } else if (promptRequestC == true) {
+                dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_c_dest});
+            } else if (promptRequestD == true) {
+                dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_d_dest});
+            };
+    };
 
     return (
         <>

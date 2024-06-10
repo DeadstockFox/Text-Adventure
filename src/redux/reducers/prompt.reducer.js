@@ -1,5 +1,5 @@
 
-const prompts = (state = {}, action) => {
+const prompts = (state = [], action) => {
         switch (action.type) {
             case 'SET_PROMPT':
                 return action.payload;
@@ -12,15 +12,3 @@ const prompts = (state = {}, action) => {
 
 export default prompts;
 
-/*
-const userReducer = (state = {}, action) => {
-    switch (action.type) {
-      case 'SET_USER':
-        return action.payload;
-      case 'UNSET_USER':
-        return {};
-      default:
-        return state;
-    }
-  };
-  */
