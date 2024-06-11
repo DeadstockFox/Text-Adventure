@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import { useState, useEffect } from "react";
@@ -8,44 +9,32 @@ import './Adventure.css';
 
 
 
+
+
 const Adventure = () => {
+
+    let history = useHistory();
 
     const dispatch = useDispatch();
     const [inputRequest, setInputRequest] = useState("");
     
     let promptDetails = useSelector(store => store.prompts);
-/*
-    const testGet = () => {
-        dispatch({type: 'FETCH_PROMPT', payload: promptRequest})
-        console.log(promptRequest);
-    };
-*/
+
     useEffect(() => {
         dispatch({type: 'FETCH_PROMPT', payload: 1 });
     }, [])
-/*
-    const submitChoice = () => {
-        console.log(inputRequest);
-        if (inputRequest === promptDetails[0].option_a) {
-            
-            setPromptRequest(promptDetails[0].option_a_dest);
-            dispatch({type: 'FETCH_PROMPT', payload: promptRequest});
-        }
-        else {alert('incorrect choice')};
-        console.log(promptRequest);
-    }
-    */
+
 
     const submitChoice = async () => {
         const pd = promptDetails[0];
 
-        let promptRequestA = await (inputRequest == promptDetails[0].option_a ? true : false );
-        let promptRequestB = await (inputRequest == promptDetails[0].option_b ? true : false );
-        let promptRequestC = await (inputRequest == promptDetails[0].option_c ? true : false );
-        let promptRequestD = await (inputRequest == promptDetails[0].option_d ? true : false );
+        let promptRequestA = await (inputRequest == pd.option_a ? true : false );
+        let promptRequestB = await (inputRequest == pd.option_b ? true : false );
+        let promptRequestC = await (inputRequest == pd.option_c ? true : false );
+        let promptRequestD = await (inputRequest == pd.option_d ? true : false );
 
         //console.log(myPromise);
-            if (promptRequestA == true) {
+            if (promptRequestA == true &&  inputRequest != "Newspaper On Desk") {
                 dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_a_dest});
             } else if (promptRequestB == true) {
                 dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_b_dest});
@@ -53,13 +42,15 @@ const Adventure = () => {
                 dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_c_dest});
             } else if (promptRequestD == true) {
                 dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_d_dest});
-            };
+            }else if (promptRequestA == true && inputRequest == "Newspaper On Desk") {
+                history.push('/credits')
+            }
     };
 
     return (
         <>
         <Box
-        minHeight={ "calc(100vh - 21px)"}
+        minHeight={ "calc(100vh - 20px)"}
         width={"calc(100vw-10)"}
         textAlign={"center"}
         p={0}
@@ -82,7 +73,7 @@ const Adventure = () => {
 
                     {prompt.description}</p>
                     <div>
-                    <p>{prompt.option_a === "Password" ? "----" :prompt.option_a} </p>
+                    <p>{prompt.option_a == "Password" || prompt.option_a == "key" ? "-- -- -- --" : prompt.option_a} </p>
                     <p>{prompt.option_b}</p>
                     </div>
                     <p>{prompt.option_c}</p>

@@ -36,11 +36,11 @@ function App() {
           {/* Visiting localhost:5173 will redirect to localhost:5173/home */}
           <Redirect exact from="/" to="/home" />
 
-          <Route
-            //Shows Credits Page - accessible from Game Start screen
-            exact path="/credits"  >
+          <ProtectedRoute  exact path="/credits"  >
+            {/*Shows Credits Page - accessible from Game Start screen */}
+           
             <CreditsPage />
-          </Route>
+          </ProtectedRoute>
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:5173/user will show the UserPage if the user is logged in.
