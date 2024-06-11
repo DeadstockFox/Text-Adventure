@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import './Footer.css';
+import logout from './logout.png';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -11,7 +12,7 @@ function Footer() {
   const dispatch = useDispatch();
 
   return <footer> &copy; Michael Kenyon
-    <button onClick={() => dispatch({ type: 'LOGOUT' })} >Logout</button>
+    <img  src={logout} onClick={() => dispatch({ type: 'LOGOUT' })}></img>
   </footer>
 }
 

@@ -39,10 +39,10 @@ const Adventure = () => {
     const submitChoice = async () => {
         const pd = promptDetails[0];
 
-        let promptRequestA = await (inputRequest === promptDetails[0].option_a ? true : false );
-        let promptRequestB = await (inputRequest === promptDetails[0].option_b ? true : false );
-        let promptRequestC = await (inputRequest === promptDetails[0].option_c ? true : false );
-        let promptRequestD = await (inputRequest === promptDetails[0].option_d ? true : false );
+        let promptRequestA = await (inputRequest == promptDetails[0].option_a ? true : false );
+        let promptRequestB = await (inputRequest == promptDetails[0].option_b ? true : false );
+        let promptRequestC = await (inputRequest == promptDetails[0].option_c ? true : false );
+        let promptRequestD = await (inputRequest == promptDetails[0].option_d ? true : false );
 
         //console.log(myPromise);
             if (promptRequestA == true) {
@@ -59,17 +59,17 @@ const Adventure = () => {
     return (
         <>
         <Box
-        minHeight={ "calc(100vh - 30px)"}
+        minHeight={ "calc(100vh - 21px)"}
         width={"calc(100vw-10)"}
         textAlign={"center"}
         p={0}
         m={0}
-        sx={{ border: '5px solid black' }}
+        //sx={{ border: '5px solid black' }}
       >
         {/*map function for the image data*/}
         {
             promptDetails.map((p) => {
-            return <div style={{backgroundColor: "darkblue", height: "calc(100vh - 370px"}}>
+            return <div style={{backgroundColor: "darkblue", height: "calc(100vh - 400px",  border: '5px solid black'}}>
                 <img src={p.image_path} />
                 </div>
             })}
@@ -77,11 +77,14 @@ const Adventure = () => {
         {/*map function for the description and choices data*/}
         {
             promptDetails.map((prompt) => {
-                return <div style={{backgroundColor: "grey", height: "calc(100vh - 460px)"}} key={prompt.id}>
-                    <p style={{marginTop: "0px"}}>{prompt.description}</p>
+                return <div style={{backgroundColor: "grey", height: "calc(100vh - 432px)"}} key={prompt.id}>
+                    <p style={{marginTop: "0px", paddingInlineStart: "28px", paddingInlineEnd: "28px", fontSize: "18px"}}>
 
-                    <p>{prompt.option_a} </p>
+                    {prompt.description}</p>
+                    <div>
+                    <p>{prompt.option_a === "Password" ? "----" :prompt.option_a} </p>
                     <p>{prompt.option_b}</p>
+                    </div>
                     <p>{prompt.option_c}</p>
                     <p>{prompt.option_d}</p>
                 </div>
