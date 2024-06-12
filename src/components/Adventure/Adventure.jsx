@@ -61,7 +61,6 @@ const Adventure = () => {
         textAlign={"center"}
         p={0}
         m={0}
-        //sx={{ border: '5px solid black' }}
       >
         {/*map function for the image data*/}
         {

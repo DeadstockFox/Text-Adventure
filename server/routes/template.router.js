@@ -16,11 +16,20 @@ router.get('/:id', (req, res) => {
   })
 });
 
+router.get()
+
 /**
- * POST route template
+ * Inventory POST request on Registration
  */
 router.post('/', (req, res) => {
-  // POST route code here
+    const qText = `INSERT INTO "inventory" ("name", "description", "user_id")
+    VALUES ('key', 'key', (SELECT "id" FROM "user" WHERE "username" = $1));`
+    pool.query(qText, [req.body.username]).then((r) => {
+      res.sendStatus(201);
+    }).catch((e) => {
+      console.log('Error in server-side POST for inventory', e);
+      res.sendStatus(500);
+    })
 });
 
 module.exports = router;
