@@ -7,17 +7,19 @@ export default function TitleStyle({onNewGame, onLoadGame}) {
 
     return (
       <Box
-        height={400}
-        width={500}
-        //my={9}
+        height={300}
+        width={400}
         margin={"auto"} //Centers box
         textAlign={"center"}
-        //gap={4}
         p={2}
-        sx={{ border: '2px solid grey' }}
+        sx={{ border: '10px double gold', backgroundColor: "grey"}}
+        justifyContent={"center"}
+        //gap={4}
+        //my={9}
       >
-      <Stack spacing={10} alignItems="center">
-      <p style={{fontSize: "50px"}}>Game Title</p>
+
+      <Stack spacing={5} alignItems="center">
+      <p style={{fontSize: "50px", color: "gold"}}>Text Adventure (Spooky)</p>
 
       <button style={{ justifyContent:"center"}} onClick={() => onNewGame()}>New Game</button>
       

@@ -1,12 +1,22 @@
 import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
+import { Box } from '@mui/material';
 
 function LoginPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <body>
+      <Box
+      height={300}
+      width={400}
+      margin={"auto"} //Centers box
+      textAlign={"center"}
+      p={2}
+      sx={{ border: '10px double gold', backgroundColor: "grey"}}
+      
+      >
       <LoginForm />
 
       <center>
@@ -20,7 +30,8 @@ function LoginPage() {
           Register
         </button>
       </center>
-    </div>
+      </Box>
+    </body>
   );
 }
 

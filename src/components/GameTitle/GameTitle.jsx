@@ -1,6 +1,7 @@
 
 import { useHistory } from 'react-router-dom';
 import TitleStyle from './TitleStyle';
+import './GameTitle.css'
 
 function GameTitle() {
 
@@ -17,7 +18,7 @@ function GameTitle() {
 
  
   return (
-      <div style={{display: "flex", minHeight: "calc(100vh - 37px)"}}>
+      <div class={"title"} >
       <TitleStyle onNewGame={onNewGame} onLoadGame={onLoadGame}/> {/*Uses Mui for the Title in its own component*/}
       </div>
        
