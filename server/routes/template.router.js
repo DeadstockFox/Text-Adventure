@@ -1,5 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
+//const { l } = require('vite/dist/node/types.d-aGj9QkWt');
 const router = express.Router();
 
 /**
@@ -16,7 +17,15 @@ router.get('/:id', (req, res) => {
   })
 });
 
-router.get()
+router.put('/:id', (req, res) => {
+  console.log(req.params.id);
+  const qText =  `UPDATE "inventory" SET "acquired" = TRUE WHERE "user_id" = $1;`;
+  pool.query(qText, [req.params.id]).then(() => {
+    res.sendStatus(200);
+  }).catch((e) => {
+    console.log('Error in server-side PUT request', e)
+  })
+});
 
 /**
  * Inventory POST request on Registration

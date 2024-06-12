@@ -7,8 +7,8 @@ export default function TitleStyle({onNewGame, onLoadGame}) {
 
     return (
       <Box
-        height={300}
-        width={400}
+        height={250}
+        width={350}
         margin={"auto"} //Centers box
         textAlign={"center"}
         p={2}
