@@ -30,6 +30,12 @@ const Adventure = () => {
     }, [])
 
 
+    const inventoryCheck = async (input) => {
+        let inPossession = await axios.get(`api/temp/inv/${userDetails.id}`)
+        console.log(inPossession.data[0]);
+        dispatch({type: 'FETCH_PROMPT', payload: inPossession.data[0].acquired === true ? 20 : 21}); //Check if Key
+    }
+
     const submitChoice = async (e) => {
         const pd = promptDetails[0];
 
@@ -44,7 +50,7 @@ const Adventure = () => {
                 axios.put(`/api/temp/${userDetails.id}`);
                 dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_a_dest}); //Key
 
-
+            } else if (promptRequestA == true && inputRequest == "Insert Key") {inventoryCheck(inputRequest) // inventory check
 
             } else if (promptRequestA == true && inputRequest != "End Game" ) {
                 dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_a_dest}); //A
@@ -67,7 +73,7 @@ const Adventure = () => {
     return (
         <>
         <Box
-        minHeight={ "calc(100vh - 20px)"}
+        minHeight={ "calc(100vh - 30px)"}
         width={"calc(100vw-10)"}
         textAlign={"center"}
         p={0}
@@ -84,7 +90,7 @@ const Adventure = () => {
         {/*map function for the description and choices data*/}
         {
             promptDetails.map((prompt) => {
-                return <div style={{backgroundColor: "grey", height: "calc(100vh - 432px)"}} key={prompt.id}>
+                return <div style={{backgroundColor: "grey", height: "calc(100vh - 442px)"}} key={prompt.id}>
                     <p style={{marginTop: "0px", paddingTop: "10px", paddingInlineStart: "28px", paddingInlineEnd: "28px", fontSize: "18px"}}>{prompt.description}</p>
                     
                     <Box sx={{ width: '100%'}}>

@@ -9,6 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import Footer from '../Footer/Footer';
+import Footer2 from '../Footer/Footer2';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -95,7 +96,10 @@ function App() {
           </Route>
 
         </Switch>
-        <Footer />
+        {user.id ?
+        <Footer /> :
+        <Footer2 />
+        }
       </div>
     </Router>
   );

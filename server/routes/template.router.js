@@ -17,6 +17,19 @@ router.get('/:id', (req, res) => {
   })
 });
 
+//GET route for Inventory Check
+
+router.get('/inv/:id', (req, res) => {
+    console.log(req.params.id);
+    const qText = `SELECT "acquired" FROM "inventory" WHERE "user_id" = $1;`;
+    pool.query(qText, [req.params.id])
+    .then ((r) => res.send(r.rows))
+    .catch((e) => {
+      console.log('Error in server-side GET request for Inventory', e);
+      res.sendStatus(500);
+    })
+})
+
 router.put('/:id', (req, res) => {
   console.log(req.params.id);
   const qText =  `UPDATE "inventory" SET "acquired" = TRUE WHERE "user_id" = $1;`;

@@ -11,7 +11,8 @@ import logout from './logout.png';
 function Footer() {
   const dispatch = useDispatch();
 
-  return <footer> &copy; Michael Kenyon
+  return <footer> 
+    &copy; Michael K.
     <img  src={logout} onClick={() => dispatch({ type: 'LOGOUT' })}></img>
   </footer>
 }
