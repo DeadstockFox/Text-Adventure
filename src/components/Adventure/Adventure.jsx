@@ -22,35 +22,36 @@ const Adventure = () => {
     const [inputRequest, setInputRequest] = useState("");
     
     let promptDetails = useSelector(store => store.prompts);
-    let userDetails = useSelector(store => store.user)
+    let userDetails = useSelector(store => store.user) //needed for inventory
 
     useEffect(() => {
-        dispatch({type: 'FETCH_PROMPT', payload: 1 });
+        dispatch({type: 'FETCH_PROMPT', payload: 1 }); // Fetching first prompt on reload
         //userDetails.id
     }, [])
 
-
+    // Function to check current items in inventory and redirect next prompt depending
     const inventoryCheck = async (input) => {
         let inPossession = await axios.get(`api/temp/inv/${userDetails.id}`)
         console.log(inPossession.data[0]);
         dispatch({type: 'FETCH_PROMPT', payload: inPossession.data[0].acquired === true ? 20 : 21}); //Check if Key
     }
 
+    //Function on form submit
     const submitChoice = async (e) => {
         const pd = promptDetails[0];
 
-        
+        //Checks each prompt against input - declares true/false
         let promptRequestA = await (inputRequest == pd.option_a ? true : false );
         let promptRequestB = await (inputRequest == pd.option_b ? true : false );
         let promptRequestC = await (inputRequest == pd.option_c ? true : false );
         let promptRequestD = await (inputRequest == pd.option_d ? true : false );
 
-        //console.log(myPromise);
+        //Series of if/then statements to determine which prompt comes next in game
             if (promptRequestA == true && inputRequest == "Pick Up Key") {
                 axios.put(`/api/temp/${userDetails.id}`);
-                dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_a_dest}); //Key
+                dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_a_dest}); //If player picks up key in kitchen
 
-            } else if (promptRequestA == true && inputRequest == "Insert Key") {inventoryCheck(inputRequest) // inventory check
+            } else if (promptRequestA == true && inputRequest == "Insert Key") {inventoryCheck(inputRequest) // If player wants to use key in kitchen
 
             } else if (promptRequestA == true && inputRequest != "End Game" ) {
                 dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_a_dest}); //A
@@ -61,7 +62,7 @@ const Adventure = () => {
             } else if (promptRequestD == true) {
                 dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_d_dest}); //D
 
-            }else if (promptRequestA == true && inputRequest == "End Game") { //Ending Game Prompt
+            }else if (promptRequestA == true && inputRequest == "End Game") { //Last prompt that then redirects to credits
                 history.push('/credits')
             } else {
                 alert("Incorrect Input. Please try again!");
@@ -72,9 +73,10 @@ const Adventure = () => {
 
     return (
         <>
-        <Box
+        {/* Main box for entire game*/} 
+        <Box 
         minHeight={ "calc(100vh - 30px)"}
-        width={"calc(100vw-10)"}
+        width={"100vw"}
         textAlign={"center"}
         p={0}
         m={0}
@@ -96,14 +98,18 @@ const Adventure = () => {
                     <Box sx={{ width: '100%'}}>
                         <br />
                     <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
-                        <Grid item xs={6}>{prompt.option_a == "2067" ? "-- -- -- --" : prompt.option_a}</Grid>
-                        <Grid item xs={6}> {prompt.option_b} </Grid>
-                        <Grid item xs={6}> {prompt.option_c} </Grid>
-                        <Grid item xs={6}> {prompt.option_d} </Grid>
+                        <Grid onClick={() => setInputRequest(prompt.option_a != "2067" ? prompt.option_a : "-- -- -- --" )} item xs={6}>
+                        {prompt.option_a == "2067" ? "-- -- -- --" : prompt.option_a}</Grid> {/*Hides password prompt while still taking value*/}
+
+                        <Grid onClick={() => setInputRequest(prompt.option_b)} item xs={6}> {prompt.option_b} </Grid>
+                        <Grid onClick={() => setInputRequest(prompt.option_c)} item xs={6}> {prompt.option_c} </Grid>
+                        <Grid onClick={() => setInputRequest(prompt.option_d)} item xs={6}> {prompt.option_d} </Grid>
                     </Grid>
                     </Box>
                 </div>
             })}   
+            
+        {/*Form for player choice input*/}
         <form onSubmit={(e) => submitChoice()} style={{backgroundColor: "grey"}}>
         <input onChange={(e) => setInputRequest(e.target.value)}style={{width: "700px"}} value={inputRequest}></input>
         <button>Submit</button>
