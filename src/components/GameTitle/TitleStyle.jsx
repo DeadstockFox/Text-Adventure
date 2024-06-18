@@ -2,7 +2,9 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 
 
-export default function TitleStyle({onNewGame, onLoadGame}) {
+export default function TitleStyle({props}) {
+
+   const { onNewGame, onLoadGame, history} = props;
 
 
     return (
@@ -13,17 +15,19 @@ export default function TitleStyle({onNewGame, onLoadGame}) {
         textAlign={"center"}
         p={2}
         sx={{ border: '10px double gold', backgroundColor: "grey"}}
-        justifyContent={"center"}
+        //justifyContent={"center"}
         //gap={4}
         //my={9}
       >
 
-      <Stack spacing={5} alignItems="center">
+      <Stack spacing={3} alignItems="center">
       <p style={{fontSize: "50px", color: "gold"}}>Text Adventure (Spooky)</p>
 
-      <button style={{ justifyContent:"center"}} onClick={() => onNewGame()}>New Game</button>
+      <button onClick={() => onNewGame()}>New Game</button>
       
-      <button style={{ justifyContent:"center"}} onClick={() => onLoadGame()}>Load Game</button>
+      <button onClick={() => onLoadGame()}>Load Game</button>
+
+      <button onClick={() => history.push('creditsSplash')}>Credits</button>
 
       </Stack>
       </Box>

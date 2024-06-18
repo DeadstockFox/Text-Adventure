@@ -18,8 +18,8 @@ function GameTitle() {
 
  
   return (
-      <div class={"title"} >
-      <TitleStyle onNewGame={onNewGame} onLoadGame={onLoadGame}/> {/*Uses Mui for the Title in its own component*/}
+      <div className={"title"} >
+      <TitleStyle props={{onNewGame, onLoadGame, history}}/> {/*Uses Mui for the Title in its own component*/}
       </div>
        
   );

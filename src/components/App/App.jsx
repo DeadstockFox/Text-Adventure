@@ -8,16 +8,18 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import Footer from '../Footer/Footer';
-import Footer2 from '../Footer/Footer2';
+
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import Adventure from '../Adventure/Adventure';
-import CreditsPage from '../CreditsPage/Credits';
+import CreditsTitle from '../CreditsPage/CreditsTitle';
+import CreditsEndPage from '../CreditsPage/CreditsEnd';
 import GameTitle from '../GameTitle/GameTitle';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Footer from '../Footer/Footer';
+
 
 import './App2.css';
 
@@ -37,12 +39,6 @@ function App() {
           {/* Visiting localhost:5173 will redirect to localhost:5173/home */}
           <Redirect exact from="/" to="/home" />
 
-          <ProtectedRoute  exact path="/credits"  >
-            {/*Shows Credits Page - accessible from Game Start screen */}
-           
-            <CreditsPage />
-          </ProtectedRoute>
-
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:5173/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -52,6 +48,13 @@ function App() {
             {/*logged in shows UserPage else shows LoginPage*/}
 
           <Adventure />
+          <Footer />
+          </ProtectedRoute>
+
+          <ProtectedRoute  exact path="/creditsEnd"  >
+            {/*Shows Credits Page after game completion, must be logged in! */}
+           
+            <CreditsEndPage />
           </ProtectedRoute>
 
           <Route
@@ -90,16 +93,18 @@ function App() {
             }
           </Route>
 
+          <Route exact path="/creditsSplash" >
+            <CreditsTitle />
+           </Route>
+
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
           </Route>
 
         </Switch>
-        {user.id ?
-        <Footer /> :
-        <Footer2 />
-        }
+
+      
       </div>
     </Router>
   );

@@ -1,10 +1,16 @@
-p {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
 
-.container {
-    min-height: calc(100vh - 25px)
-}
+.credits {
+    background-image: url("images/Credits.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-attachment: fixed;
+    }
+    
+    .returnHome {
+        float: Right;
+        margin-top: 5%;
+        margin-right: 5%;
+        border-color: gold;
+    }

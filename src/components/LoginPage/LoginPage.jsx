@@ -7,7 +7,7 @@ function LoginPage() {
   const history = useHistory();
 
   return (
-    <body>
+    <div className={'loginStyle'}>
       <Box
       height={300}
       width={400}
@@ -31,7 +31,7 @@ function LoginPage() {
         </button>
       </center>
       </Box>
-    </body>
+      </div>
   );
 }
 

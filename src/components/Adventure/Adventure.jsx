@@ -63,7 +63,7 @@ const Adventure = () => {
                 dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_d_dest}); //D
 
             }else if (promptRequestA == true && inputRequest == "End Game") { //Last prompt that then redirects to credits
-                history.push('/credits')
+                history.push('/creditsEnd')
             } else {
                 alert("Incorrect Input. Please try again!");
             }
@@ -72,7 +72,8 @@ const Adventure = () => {
     };
 
     return (
-        <>
+       <div className={"adventure"}>
+
         {/* Main box for entire game*/} 
         <Box 
         minHeight={ "calc(100vh - 30px)"}
@@ -81,6 +82,8 @@ const Adventure = () => {
         p={0}
         m={0}
       >
+      {/* Main box for entire game*/} 
+
         {/*map function for the image data*/}
         {
             promptDetails.map((p) => {
@@ -93,11 +96,11 @@ const Adventure = () => {
         {
             promptDetails.map((prompt) => {
                 return <div style={{backgroundColor: "grey", height: "calc(100vh - 442px)"}} key={prompt.id}>
-                    <p style={{marginTop: "0px", paddingTop: "10px", paddingInlineStart: "28px", paddingInlineEnd: "28px", fontSize: "18px"}}>{prompt.description}</p>
+                    <p style={{marginTop: "0px", paddingTop: "10px", paddingInlineStart: "28px", paddingInlineEnd: "28px", fontSize: "20px"}}>{prompt.description}</p>
                     
                     <Box sx={{ width: '100%'}}>
                         <br />
-                    <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
+                    <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }} fontWeight={"bold"} >
                         <Grid onClick={() => setInputRequest(prompt.option_a != "2067" ? prompt.option_a : "-- -- -- --" )} item xs={6}>
                         {prompt.option_a == "2067" ? "-- -- -- --" : prompt.option_a}</Grid> {/*Hides password prompt while still taking value*/}
 
@@ -116,8 +119,7 @@ const Adventure = () => {
         </form>
 
         </Box>
-        </>
-
+        </div>
     )
 
 
