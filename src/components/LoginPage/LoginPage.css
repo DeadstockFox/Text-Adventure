@@ -1,4 +1,11 @@
-.loginStyle {
-    min-height: 100vh;
-    background-color: gray;
-}
+.LoginPage {
+
+        background-image: url("images/Title.png");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        min-width: 100vw;
+        background-attachment: fixed;
+        align-content: center;
+    
+    }

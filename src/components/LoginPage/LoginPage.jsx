@@ -1,26 +1,28 @@
 import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
+
+import './LoginPage.css'
 
 function LoginPage() {
   const history = useHistory();
 
   return (
-    <div className={'loginStyle'}>
-      <Box
-      height={300}
-      width={400}
-      margin={"auto"} //Centers box
-      textAlign={"center"}
-      p={2}
-      sx={{ border: '10px double gold', backgroundColor: "grey"}}
-      
+      <div className={"LoginPage"}>
+    <Box
+        height={250}
+        width={350}
+        margin={"auto"} //Centers box
+        textAlign={"center"}
+        p={2}
+        sx={{ border: '10px double gold', backgroundColor: "grey"}}
+        
       >
-      <LoginForm />
 
-      <center>
-        <button
+      <Stack spacing={3} alignItems="center">
+      <LoginForm />
+      <button
           type="button"
           className="btn btn_asLink"
           onClick={() => {
@@ -29,7 +31,7 @@ function LoginPage() {
         >
           Register
         </button>
-      </center>
+      </Stack>
       </Box>
       </div>
   );

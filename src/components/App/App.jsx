@@ -8,19 +8,18 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-
-
+//Routes
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import Adventure from '../Adventure/Adventure';
 import CreditsTitle from '../CreditsPage/CreditsTitle';
-import CreditsEndPage from '../CreditsPage/CreditsEnd';
 import GameTitle from '../GameTitle/GameTitle';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Footer from '../Footer/Footer';
+import EndForm from '../EndForm/EndForm';
 
-
+//Styling
 import './App2.css';
 
 function App() {
@@ -51,10 +50,10 @@ function App() {
           <Footer />
           </ProtectedRoute>
 
-          <ProtectedRoute  exact path="/creditsEnd"  >
-            {/*Shows Credits Page after game completion, must be logged in! */}
+          <ProtectedRoute  exact path="/ending"  >
+            {/*Shows Form for comments after game completion, must be logged in! */}
            
-            <CreditsEndPage />
+            <EndForm />
           </ProtectedRoute>
 
           <Route
