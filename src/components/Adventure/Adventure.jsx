@@ -63,7 +63,7 @@ const Adventure = () => {
                 dispatch({type: 'FETCH_PROMPT', payload: promptDetails[0].option_d_dest}); //D
 
             }else if (promptRequestA == true && inputRequest == "End Game") { //Last prompt that then redirects to credits
-                history.push('/creditsEnd')
+                history.push('/ending')
             } else {
                 alert("Incorrect Input. Please try again!");
             }

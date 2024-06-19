@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 
 export default function TitleStyle({props}) {
 
-   const { onNewGame, onLoadGame, history} = props;
+    const { onNewGame, onLoadGame, history} = props;
 
 
     return (
