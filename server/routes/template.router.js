@@ -17,8 +17,26 @@ router.get('/:id', (req, res) => {
   })
 });
 
-//GET route for Inventory Check
 
+
+
+
+
+//Inventory Routes
+
+
+//Resetting Inventory if game is refreshed
+router.put('/reset/:id', (req, res) => {
+  console.log(req.params.id);
+  const qText =  `UPDATE "inventory" SET "acquired" = False WHERE "user_id" = $1;`;
+  pool.query(qText, [req.params.id]).then(() => {
+    res.sendStatus(200);
+  }).catch((e) => {
+    console.log('Error in server-side PUT request', e)
+  })
+});
+
+//Grabbing inventory on game start
 router.get('/inv/:id', (req, res) => {
     console.log(req.params.id);
     const qText = `SELECT "acquired" FROM "inventory" WHERE "user_id" = $1;`;
@@ -30,6 +48,7 @@ router.get('/inv/:id', (req, res) => {
     })
 })
 
+//Updating inventory when item is picked up
 router.put('/:id', (req, res) => {
   console.log(req.params.id);
   const qText =  `UPDATE "inventory" SET "acquired" = TRUE WHERE "user_id" = $1;`;
@@ -40,9 +59,7 @@ router.put('/:id', (req, res) => {
   })
 });
 
-/**
- * Inventory POST request on Registration
- */
+//Inventory creation on user registration
 router.post('/', (req, res) => {
     const qText = `INSERT INTO "inventory" ("name", "description", "user_id")
     VALUES ('key', 'key', (SELECT "id" FROM "user" WHERE "username" = $1));`

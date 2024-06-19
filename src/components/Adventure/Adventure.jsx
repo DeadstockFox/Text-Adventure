@@ -26,6 +26,7 @@ const Adventure = () => {
 
     useEffect(() => {
         dispatch({type: 'FETCH_PROMPT', payload: 1 }); // Fetching first prompt on reload
+        axios.put(`/api/temp/reset/${userDetails.id}`);
         //userDetails.id
     }, [])
 
