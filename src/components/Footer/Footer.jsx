@@ -14,6 +14,7 @@ function Footer() {
   return <footer> 
     &copy; Michael K.
     <img  src={logout} onClick={() => dispatch({ type: 'LOGOUT' })}></img>
+    
   </footer>
 }
 
